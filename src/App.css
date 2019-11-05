@@ -1,0 +1,35 @@
+@font-face {
+
+        font-family: 'Promt-Regular';
+        src: url('/fonts/Promt-Regular.ttf');
+
+}
+
+@font-face {
+
+    font-family: 'Promt-Medium';
+    src: url('/fonts/Promt-Medium.ttf');
+
+}
+
+@font-face {
+
+    font-family: 'Promt-Bold';
+    src: url('/fonts/Promt-Bold.ttf');
+
+}
+
+
+h1,h2,h3,h4,h5,h6 {
+
+    font-family: 'Promt-Medium';
+
+}
+
+
+.title{
+
+    font-family: 'Promt-Regular';
+
+}
+
