@@ -26,7 +26,7 @@ class Order extends Component {
     delOrder =(order) =>{
 
 
-        console.log(order)
+    console.log(order.id)
     //     axios.delete("http://localhost:3001/orders/" + order.id ).then(res =>{
     //         axios.get("http://localhost:3001/orders").then(res =>{
 
@@ -40,14 +40,13 @@ class Order extends Component {
     showOrders = () =>{
 
         return this.state.orders && this.state.orders.map(order =>{
-            let date = new Date("orderedDate")
                 return (
                 <div key={order.id} className="col-md-3">
                     <hr/>
                     <p className="text-right">
                         <button className="btn btn-danger btn-sm" onClick={() => this.delOrder(order)}>X</button>
                     </p>
-                    <h5>วันที่ {date.toLocaleDateString}</h5>
+                        <h5>วันที่ {order.orderedDate}</h5>
                     <ul>
                         {order.orders && order.orders.map(record =>{
                                 return (

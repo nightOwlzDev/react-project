@@ -58,12 +58,12 @@ class Monitor extends Component {
             if (orders && orders.length > 0) {
                 
                const date = new Date ()
-                axios.post("http://localhost:3001/orders" ,{
+                axios.post("http://localhost:9000/orders" ,{
                     orderedDate : date,
                     totalPrice,
                     orders
                 }).then(res =>{
-
+                    
                     swal("Success!", "Add new Order Complete", "success");
                     this.setState({ totalPrice : 0 , orders : []})
 
