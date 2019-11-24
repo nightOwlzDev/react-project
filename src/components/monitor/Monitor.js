@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Calculator from './Calculator'
-import ProductList from '../product/ProducList'
+import ProductList from '../product/ProductList'
 import axios from 'axios'
 import swal from 'sweetalert'
 
