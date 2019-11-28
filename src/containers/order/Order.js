@@ -1,44 +1,30 @@
 import React, { Component } from 'react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import axios from 'axios'   
-
+import { connect } from 'react-redux'
+import { ordersFetch,ordersDelete } from '../../actions/methodAction'
 
 class Order extends Component {
 
     constructor(props){
-
         super(props)
-        this.state = {orders : null}
-
     }
 
     componentDidMount(){
 
-            axios.get("http://localhost:9000/orders").then(res =>{
-
-                    this.setState({ orders : res.data })
-
-            })
+            this.props.ordersFetch()
 
     }
 
     delOrder =(order) =>{
 
-        axios.delete(`http://localhost:9000/orders/${order._id}`).then(res =>{
-
-            axios.get("http://localhost:9000/orders").then(res =>{
-
-                    this.setState({ orders : res.data })
-
-            })
-    })
+            this.props.ordersDelete(order._id)
 
     }
     
     showOrders = () =>{
 
-        return this.state.orders && this.state.orders.map(order =>{
+        return this.props.orders && this.props.orders.map(order =>{
                 const date = new Date(order.orderedDate);
                 return (
                 <div key={order._id} className="col-md-3">
@@ -81,4 +67,11 @@ class Order extends Component {
     }
 }
 
-export default Order
+const mapStateToProps = ( { orders }) =>{
+
+
+    return { orders }
+
+}
+
+export default connect(mapStateToProps, { ordersFetch , ordersDelete })(Order)

@@ -3,14 +3,15 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import ProductList from '../../components/product/ProductList'
 import { withRouter } from 'react-router-dom'
-import axios from 'axios'   
+import { connect } from 'react-redux'
+import { productsFetch,productsDelete } from '../../actions/methodAction'
+
 
 class Product extends Component {
 
     constructor(props){
 
         super(props)
-        this.state = {products : null}
         this.delProduct = this.delProduct.bind(this)
         this.editProduct = this.editProduct.bind(this)
         
@@ -18,11 +19,7 @@ class Product extends Component {
 
     componentDidMount(){
 
-            axios.get("http://localhost:9000/products").then(res =>{
-
-                this.setState({ products : res.data })
-
-            })
+        this.props.productsFetch()
 
     }
 
@@ -37,14 +34,7 @@ class Product extends Component {
 
     delProduct =(product) =>{
 
-        axios.delete(`http://localhost:9000/products/${product._id}`).then(res =>{
-
-            axios.get("http://localhost:9000/products").then(res =>{
-
-                    this.setState({ products : res.data })
-
-            })
-    })
+        this.props.productsDelete(product._id)
 
     }
 
@@ -62,7 +52,7 @@ class Product extends Component {
                                 <button className="btn btn-success title float-right" onClick={() => this.props.history.push(`products/add`)}>เพิ่ม</button>
                             </div>
                         </div>
-                        <ProductList products={this.state.products} 
+                        <ProductList products={this.props.products} 
                             onDelProduct={this.delProduct} onEditProduct={this.editProduct} />
                     </div>
                 <Footer company="HP" email="night@hp.com" />
@@ -71,4 +61,11 @@ class Product extends Component {
     }
 }
 
-export default withRouter(Product)
+const mapStateToProps = ( { products }) =>{
+
+    return { products }
+
+}
+
+
+export default withRouter( connect(mapStateToProps, { productsFetch , productsDelete })(Product) )

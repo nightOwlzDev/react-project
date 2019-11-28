@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Monitor from '../components/monitor/Monitor';
-import axios from 'axios'
+import { connect } from 'react-redux'
+import { productsFetch } from '../actions/methodAction'
 
 
 
@@ -10,20 +11,12 @@ class Home extends Component {
 
   constructor(props){
       super(props)
-      this.state = {products : ""}
 
   }
 
   componentDidMount(){
 
-    axios.get("http://localhost:9000/products").then( res =>{
-
-          // console.log(res.data)
-          {this.setState({ products : res.data})}
-
-    })
-
-    
+      this.props.productsFetch()
 
   }
 
@@ -31,12 +24,19 @@ class Home extends Component {
     return (
       <div>
         <Header />
-        <Monitor products={this.state.products} />
+        <Monitor products={this.props.products} />
         <Footer company="hp" email="night@hp.com" />
       </div>
     )
   }
 }
 
-export default Home
+const mapStateToProps = ( { products }) =>{
+
+     return { products }
+
+}
+
+
+export default connect(mapStateToProps,{productsFetch})(Home)
 
