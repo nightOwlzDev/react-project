@@ -2,6 +2,20 @@
 import axios from 'axios'
 import type from './types'
 
+
+export const productFetch = _id =>{
+
+    return dispatch =>{
+        axios.get(`http://localhost:9000/product/${_id}`).then(res =>{
+
+            dispatch({type : type.PRODUCT_FETCH,payload : res.data})
+
+        })
+    }
+   
+        
+}
+
 export const productsFetch = () =>{
 
     return dispatch =>{
@@ -31,6 +45,36 @@ export const productsDelete = _id =>{
 
     }
     
+}
+
+
+export const productCreate = values =>{
+
+    return dispatch =>{
+
+        axios.post("http://localhost:9000/products/" , values).then(res =>{ 
+
+            dispatch({ type : type.PRODUCT_CREATE})
+
+        })
+
+    }
+
+}
+
+
+export const productUpdate = (_id,values) =>{
+
+    return dispatch =>{
+
+        axios.put(`http://localhost:9000/products/${_id}` ,values).then(res =>{ 
+
+            dispatch({ type : type.PRODUCT_UPDATE})
+            
+        })
+
+    }
+
 }
 
 

@@ -26,7 +26,7 @@ class Product extends Component {
 
     editProduct =(product) =>{  
 
-            this.props.history.push(`products/edit/${product._id}`)
+            this.props.history.push(`product/edit/${product._id}`)
 
     }
 
@@ -49,7 +49,7 @@ class Product extends Component {
                                 <h1>สินค้า</h1>
                             </div>
                             <div className='col-6'>
-                                <button className="btn btn-success title float-right" onClick={() => this.props.history.push(`products/add`)}>เพิ่ม</button>
+                                <button className="btn btn-success title float-right" onClick={() => this.props.history.push(`product/add`)}>เพิ่ม</button>
                             </div>
                         </div>
                         <ProductList products={this.props.products} 
