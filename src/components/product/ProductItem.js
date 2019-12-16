@@ -5,7 +5,7 @@ class ProductItem extends Component {
         constructor(props) {
 
             super(props);
-            console.log('contstructor |' + props.productName)
+            // console.log('contstructor |' + props.productName)
 
         } 
 

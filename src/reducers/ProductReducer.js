@@ -9,7 +9,7 @@ export default function(state = [] ,action){
         case type.PRODUCT_CREATE :
             return { saved : true , message : "บันทึกสินค้าเรียบร้อยค่ะ" }
         case type.PRODUCT_UPDATE :
-            return { ... state , saved : true , message : "บันทึกสินค้าเรียบร้อยค่ะ" }
+            return { ...state , saved : true , message : "บันทึกสินค้าเรียบร้อยค่ะ" }
         default:
             return state;
     }

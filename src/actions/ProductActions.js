@@ -67,10 +67,10 @@ export const productUpdate = (_id,values) =>{
 
     return dispatch =>{
 
-        axios.put(`http://localhost:9000/products/${_id}` ,values).then(res =>{ 
-
-            dispatch({ type : type.PRODUCT_UPDATE})
+        axios.put(`http://localhost:9000/product/${_id}` ,values).then(res =>{ 
             
+            dispatch({ type : type.PRODUCT_UPDATE})
+
         })
 
     }
